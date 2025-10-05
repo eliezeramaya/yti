@@ -15,5 +15,11 @@ flutter run -d chrome
 
 ## Dart-define
 ```
+# Opción A: pasar defines sueltos
 flutter run -d chrome --dart-define=YOUTUBE_API_KEY=xxx --dart-define=OPENAI_API_KEY=sk-xxx
+
+# Opción B: usar archivo .env
+# 1) Copia .env.sample a .env y rellena valores
+# 2) Ejecuta con:
+flutter run -d chrome --dart-define-from-file=.env
 ```

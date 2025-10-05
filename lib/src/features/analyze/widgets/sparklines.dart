@@ -3,36 +3,36 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
 
 class SparklineRow extends StatelessWidget {
-  const SparklineRow({super.key});
+  final List<FlSpot> posSeries;
+  final List<FlSpot> likesSeries;
+  final List<FlSpot> viralSeries;
+  const SparklineRow({super.key, required this.posSeries, required this.likesSeries, required this.viralSeries});
   @override
   Widget build(BuildContext context) {
-    return Row(children: const [
-      Expanded(child: SparkCard(title: 'Sentimiento (Pos %)')),
-      SizedBox(width: 12),
-      Expanded(child: SparkCard(title: 'Actividad (likes/día)')),
-      SizedBox(width: 12),
-      Expanded(child: SparkCard(title: 'Proxy de viralidad')),
+    return Row(children: [
+      Expanded(child: SparkCard(title: 'Sentimiento (Pos %)', spots: posSeries)),
+      const SizedBox(width: 12),
+      Expanded(child: SparkCard(title: 'Actividad (likes/día)', spots: likesSeries)),
+      const SizedBox(width: 12),
+      Expanded(child: SparkCard(title: 'Proxy de viralidad', spots: viralSeries)),
     ]);
   }
 }
 
 class SparkCard extends StatelessWidget {
   final String title;
-  const SparkCard({super.key, required this.title});
-
-  List<FlSpot> _mock() => const [
-    FlSpot(0, 10), FlSpot(1, 12), FlSpot(2, 8),
-    FlSpot(3, 18), FlSpot(4, 16), FlSpot(5, 22),
-  ];
+  final List<FlSpot> spots;
+  const SparkCard({super.key, required this.title, required this.spots});
 
   @override
   Widget build(BuildContext context) {
-    return Card(color: AppColors.surface, child: Padding(
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return Card(color: isLight ? Colors.white : AppColors.surface, child: Padding(
       padding: const EdgeInsets.all(12),
       child: SizedBox(
         height: 120,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(title, style: const TextStyle(color: AppColors.textMuted, fontSize: 12)),
+          Text(title, style: TextStyle(color: isLight ? Colors.black54 : AppColors.textMuted, fontSize: 12)),
           SizedBox(height: 8),
           Expanded(child: LineChart(LineChartData(
             gridData: FlGridData(show: false),
@@ -50,7 +50,7 @@ class SparkCard extends StatelessWidget {
                   colors: [AppColors.accent, Color(0x003B82F6)],
                 ),
               ),
-              spots: _mock(),
+              spots: spots.isEmpty ? const [FlSpot(0,0)] : spots,
             )],
           ))),
         ]),

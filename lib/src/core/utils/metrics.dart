@@ -38,6 +38,13 @@ double growthNormFromLikes(List<Map<String, num>> dailyLikes) {
   return ((accel + 1) / 2).clamp(0.0, 1.0);
 }
 
+/// Engagement rate as percentage [0..100].
+double engagementRatePercent({required int views, int likes=0, int comments=0, int shares=0}) {
+  if (views <= 0) return 0;
+  final total = likes + comments + shares;
+  return 100.0 * total / views;
+}
+
 class ViralityParts { final double speed, interactions, growth; const ViralityParts(this.speed,this.interactions,this.growth); }
 class ViralityScore { final int score; final ViralityParts parts; final (double,double,double) weights; const ViralityScore(this.score,this.parts,this.weights); }
 

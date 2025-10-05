@@ -38,12 +38,12 @@ ThemeData buildTheme(Brightness mode) {
         color: isLight ? Colors.black : AppColors.text,
       ),
     ),
-    cardTheme: CardTheme(
-      color: AppColors.surface,
+    cardTheme: CardThemeData(
+      color: isLight ? Colors.white : AppColors.surface,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: AppColors.border),
+        side: BorderSide(color: isLight ? Colors.black12 : AppColors.border),
       ),
     ),
   );

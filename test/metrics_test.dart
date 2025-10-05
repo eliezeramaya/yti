@@ -38,4 +38,9 @@ void main() {
     expect((sum - 1).abs() < 1e-9, true);
     expect(res.score >= 0 && res.score <= 100, true);
   });
+
+  test('engagementRatePercent basic', () {
+    expect(engagementRatePercent(views: 1000, likes: 10, comments: 10, shares: 5), 2.5);
+    expect(engagementRatePercent(views: 0, likes: 10, comments: 10, shares: 5), 0);
+  });
 }
