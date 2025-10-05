@@ -1,23 +1,19 @@
-# YTI
+# YouTube Insights – Flutter Pro Scaffold
 
-This is the YTI project.
+- Riverpod state management
+- go_router navigation (Dashboard, Analyze)
+- Repository pattern (YouTubeRepository, AIRepository)
+- Services stubs (YouTubeService, AIService)
+- Liquid Glass theme tokens and reusable widgets (KPI, sparkline)
+- Viralidad formula with configurable weights + unit tests
 
-## Description
+## Run
+```
+flutter pub get
+flutter run -d chrome
+```
 
-[Add your project description here]
-
-## Installation
-
-[Add installation instructions here]
-
-## Usage
-
-[Add usage instructions here]
-
-## Contributing
-
-[Add contributing guidelines here]
-
-## License
-
-[Add license information here]
+## Dart-define
+```
+flutter run -d chrome --dart-define=YOUTUBE_API_KEY=xxx --dart-define=OPENAI_API_KEY=sk-xxx
+```
